@@ -27,7 +27,7 @@ export class TodoStoreService {
   }
 
   @action async getTodos() {
-    this.todos = await new Promise<Todo[]>((funStuff) => {
+    this.todos = await new Promise<Todo[]>(funStuff => {
       setTimeout(() => {
         funStuff([new Todo({ title: 'Learn Mobx' })]);
       }, 1000);
@@ -39,11 +39,11 @@ export class TodoStoreService {
   }
 
   @action removeTodo(todo: Todo) {
-    this.todos = this.todos.filter((currentTodo) => currentTodo !== todo);
+    this.todos = this.todos.filter(currentTodo => currentTodo !== todo);
   }
 
   @action toggleComplete(todo: Todo) {
-    this.todos = this.todos.map((currentTodo) => {
+    this.todos = this.todos.map(currentTodo => {
       if (currentTodo === todo) {
         return {
           ...currentTodo,
@@ -55,11 +55,11 @@ export class TodoStoreService {
   }
 
   @action checkAll() {
-    this.todos = this.todos.map((t) => ({ ...t, completed: true }));
+    this.todos = this.todos.map(t => ({ ...t, completed: true }));
   }
 
   @action unCheckAll() {
-    this.todos = this.todos.map((t) => ({ ...t, completed: false }));
+    this.todos = this.todos.map(t => ({ ...t, completed: false }));
   }
 
   @computed get filteredTodos() {
@@ -67,9 +67,9 @@ export class TodoStoreService {
       case 'SHOW_ALL':
         return this.todos;
       case 'SHOW_COMPLETED':
-        return this.todos.filter((t) => t.completed);
+        return this.todos.filter(t => t.completed);
       case 'SHOW_ACTIVE':
-        return this.todos.filter((t) => !t.completed);
+        return this.todos.filter(t => !t.completed);
     }
   }
 }
