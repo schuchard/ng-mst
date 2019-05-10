@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoStoreService, Todo, TodosFilter } from './todo-store.service';
-import { Observable } from 'rxjs';
-import { FromMobxService } from '../core/from-mobx.service';
+import { fromMobx } from '../core/from-mobx.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,10 +8,10 @@ import { FromMobxService } from '../core/from-mobx.service';
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
-  todos$ = this.fmx.fromMobx(() => this.todoStore.filteredTodos);
-  completedTodos$ = this.fmx.fromMobx(() => this.todoStore.completedTodos);
+  todos$ = fromMobx(() => this.todoStore.filteredTodos);
+  completedTodos$ = fromMobx(() => this.todoStore.completedTodos);
 
-  constructor(private todoStore: TodoStoreService, private fmx: FromMobxService) {}
+  constructor(private todoStore: TodoStoreService) {}
 
   ngOnInit() {
     this.todoStore.getTodos();
