@@ -9,13 +9,13 @@ import { FromMobxService } from '../core/from-mobx.service';
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
-  todos: Observable<Todo[]>;
+  todos$ = this.fmx.fromMobx(() => this.todoStore.filteredTodos);
+  completedTodos$ = this.fmx.fromMobx(() => this.todoStore.completedTodos);
 
   constructor(private todoStore: TodoStoreService, private fmx: FromMobxService) {}
 
   ngOnInit() {
     this.todoStore.getTodos();
-    this.todos = this.fmx.fromMobx(() => this.todoStore.filteredTodos);
   }
 
   addTodo() {

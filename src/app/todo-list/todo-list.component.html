@@ -1,9 +1,20 @@
 <button (click)="checkAll()">Add all</button>
 <button (click)="unCheckAll()">Remove all</button>
-<!-- <app-todos [todos]="todos | async" (complete)="complete($event)"></app-todos> -->
 <button (click)="addTodo()">Add todo</button>
 <button (click)="setFilter('SHOW_ALL')">Show all</button>
 <button (click)="setFilter('SHOW_COMPLETED')">Show completed</button>
 <button (click)="setFilter('SHOW_ACTIVE')">Show active</button>
-<br />
-{{ todos | async | json }}
+<ul>
+  <li *ngFor="let todo of todos$ | async">
+    <app-todo [todo]="todo" (complete)="complete($event)"></app-todo>
+  </li>
+</ul>
+
+<div *ngIf="(completedTodos$ | async).length">
+  <h2>Completed</h2>
+  <ul>
+    <li *ngFor="let todo of completedTodos$ | async">
+      <app-todo [todo]="todo" (complete)="complete($event)"></app-todo>
+    </li>
+  </ul>
+</div>

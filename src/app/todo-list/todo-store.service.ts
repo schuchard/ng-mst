@@ -17,7 +17,7 @@ export type TodosFilter = 'SHOW_ALL' | 'SHOW_COMPLETED' | 'SHOW_ACTIVE';
   providedIn: 'root',
 })
 export class TodoStoreService {
-  @observable todos: Todo[] = [];
+  @observable todos$: Todo[] = [];
   @observable filter = 'SHOW_ALL';
 
   constructor() {}
@@ -27,7 +27,7 @@ export class TodoStoreService {
   }
 
   @action async getTodos() {
-    this.todos = await new Promise<Todo[]>(funStuff => {
+    this.todos$ = await new Promise<Todo[]>(funStuff => {
       setTimeout(() => {
         funStuff([new Todo({ title: 'Learn Mobx' })]);
       }, 1000);
@@ -35,15 +35,15 @@ export class TodoStoreService {
   }
 
   @action addTodo({ title }: Partial<Todo>) {
-    this.todos = [...this.todos, new Todo({ title })];
+    this.todos$ = [...this.todos$, new Todo({ title })];
   }
 
   @action removeTodo(todo: Todo) {
-    this.todos = this.todos.filter(currentTodo => currentTodo !== todo);
+    this.todos$ = this.todos$.filter(currentTodo => currentTodo !== todo);
   }
 
   @action toggleComplete(todo: Todo) {
-    this.todos = this.todos.map(currentTodo => {
+    this.todos$ = this.todos$.map(currentTodo => {
       if (currentTodo === todo) {
         return {
           ...currentTodo,
@@ -55,21 +55,25 @@ export class TodoStoreService {
   }
 
   @action checkAll() {
-    this.todos = this.todos.map(t => ({ ...t, completed: true }));
+    this.todos$ = this.todos$.map(t => ({ ...t, completed: true }));
   }
 
   @action unCheckAll() {
-    this.todos = this.todos.map(t => ({ ...t, completed: false }));
+    this.todos$ = this.todos$.map(t => ({ ...t, completed: false }));
   }
 
   @computed get filteredTodos() {
     switch (this.filter) {
       case 'SHOW_ALL':
-        return this.todos;
+        return this.todos$;
       case 'SHOW_COMPLETED':
-        return this.todos.filter(t => t.completed);
+        return this.todos$.filter(t => t.completed);
       case 'SHOW_ACTIVE':
-        return this.todos.filter(t => !t.completed);
+        return this.todos$.filter(t => !t.completed);
     }
+  }
+
+  @computed get completedTodos() {
+    return this.todos$.filter(t => t.completed);
   }
 }
