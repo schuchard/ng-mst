@@ -4431,11 +4431,6 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
 
-ngx-mobx@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/ngx-mobx/-/ngx-mobx-1.2.2.tgz#239f707018e14005439031287b395e73b2a015fd"
-  integrity sha512-fnwdMCg33B5ID5VnPDdWFilJJl5Nyxymc2RrYQfCCdNVMydyMdtuEHu+XCZOiVkrTN2gU6kUGEo1oHMA+InC9Q==
-
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

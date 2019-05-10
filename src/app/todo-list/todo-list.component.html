@@ -1,0 +1,9 @@
+<button (click)="checkAll()">Add all</button>
+<button (click)="unCheckAll()">Remove all</button>
+<!-- <app-todos [todos]="todos | async" (complete)="complete($event)"></app-todos> -->
+<button (click)="addTodo()">Add todo</button>
+<button (click)="setFilter('SHOW_ALL')">Show all</button>
+<button (click)="setFilter('SHOW_COMPLETED')">Show completed</button>
+<button (click)="setFilter('SHOW_ACTIVE')">Show active</button>
+<br>
+{{todos |async |json}}
