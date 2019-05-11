@@ -8,10 +8,10 @@ const routes: Routes = [
     path: '',
     component: TodoListComponent,
   },
-  {
-    path: 'mst',
-    component: ListTodoComponent,
-  },
+  // {
+  //   path: 'mst',
+  //   component: ListTodoComponent,
+  // },
 ];
 
 @NgModule({
